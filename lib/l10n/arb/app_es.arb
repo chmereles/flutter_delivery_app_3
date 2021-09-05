@@ -1,0 +1,22 @@
+{
+    "@@locale": "es",
+    "welcomeMessage": "Biendvenido a Comida a tu Puerta",
+
+    "signInWelcomeTo": "Bienvenido a",
+    "signInMessage1": "Enter you Phone number or Email address for sign in. Enjoy your food",
+    "signInUsername": "Email",
+    "signInPassword": "Contraseña",
+    "signInRemenberMe": "Recordame",
+    "signInForgotPassword": "Olvidó su contraseña?",
+    "signInDontHaveAccount": "No tiene una cuenta?",
+    "signInFacebook": "Conectar con Facebook",
+    "signInGoogle": "Conectar con Google",
+    "signInOr": "O",
+    "signIn": "Ingresar",
+    "signUp": "Registrarse",
+
+    "counterAppBarTitle": "Contador",
+    "@counterAppBarTitle": {
+        "description": "Texto mostrado en la AppBar de la página del contador"
+    }
+}

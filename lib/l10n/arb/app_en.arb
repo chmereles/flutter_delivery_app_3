@@ -1,0 +1,22 @@
+{
+    "@@locale": "en",
+    "welcomeMessage": "Welcome to Food Door",
+    
+    "signInWelcomeTo": "Welcome to",
+    "signInMessage1": "Enter you Phone number or Email address for sign in. Enjoy your food",
+    "signInUsername": "Username",
+    "signInPassword": "Password",
+    "signInRemenberMe": "Remenber me",
+    "signInForgotPassword": "Forgot password?",
+    "signInDontHaveAccount": "Don't have an account?",
+    "signInFacebook": "Connect With Facebook",
+    "signInGoogle": "Connect With Google",
+    "signInOr": "OR",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    }
+}
