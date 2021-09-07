@@ -1,12 +1,17 @@
+import 'package:app_delivery_3/presentation/05_home/home_page.dart';
+import 'package:app_delivery_3/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-import 'package:app_delivery_3/app/theme_utils.dart';
 import 'package:app_delivery_3/config/app_constants.dart';
 import 'package:app_delivery_3/config/size_config.dart';
 import 'package:app_delivery_3/l10n/l10n.dart';
 
 class SignInview extends StatelessWidget {
   const SignInview({Key? key}) : super(key: key);
+
+  void _gotoHomePage(BuildContext context) {
+    Navigator.of(context).pushNamed(HomePage.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ class SignInview extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: SizeConfig.screenHeight * 0.02),
+            // SizedBox(height: SizeConfig.screenHeight * 0.0),
             // bloque 1
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +70,7 @@ class SignInview extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight * 0.025),
             //
             CustomButton(
-              onPressed: () {},
+              onPressed: () => _gotoHomePage(context),
               height: SizeConfig.screenHeight * 0.067,
               bold: true,
               child: Text(l10n.signIn),
@@ -132,55 +137,6 @@ class SignInview extends StatelessWidget {
       style: TextStyle(
         color: Theme.of(context).primaryColor,
         fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    Key? key,
-    required this.onPressed,
-    required this.child,
-    this.bold = false,
-    this.height,
-    this.color,
-    this.image,
-  }) : super(key: key);
-
-  final VoidCallback onPressed;
-  final Widget child;
-  final bool bold;
-  final double? height;
-  final Color? color;
-  final String? image;
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints:
-          BoxConstraints.tightFor(width: double.infinity, height: height),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          primary: color ?? Theme.of(context).primaryColor,
-          textStyle: TextStyle(
-            fontWeight: bold ? FontWeight.bold : null,
-          ),
-        ),
-        // child: child,
-        child: Stack(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (image != null)
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Image.asset(image!)),
-              ),
-            Align(child: child),
-          ],
-        ),
       ),
     );
   }

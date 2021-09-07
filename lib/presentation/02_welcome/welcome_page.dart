@@ -1,3 +1,5 @@
+import 'package:app_delivery_3/presentation/00_main/main_page.dart';
+import 'package:app_delivery_3/presentation/10_restaurant/restaurant_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_delivery_3/presentation/03_sign_in/sign_in_page.dart';
@@ -11,7 +13,9 @@ class WelcomePage extends StatelessWidget {
   static String id = 'welcome-page';
 
   void _gotoSingInPage(BuildContext context) {
-    Navigator.of(context).pushNamed(SignInPage.id);
+    // Navigator.of(context).pushNamed(SignInPage.id);
+    // Navigator.of(context).pushNamed(RestaurantPage.id);
+    Navigator.of(context).pushNamed(MainPage.id);
   }
 
   @override
@@ -30,8 +34,12 @@ class WelcomePage extends StatelessWidget {
       body: Stack(
         children: [
           InkWell(
-              onTap: () => _gotoSingInPage(context),
-              child: Container(color: Theme.of(context).primaryColor)),
+            onTap: () => _gotoSingInPage(context),
+            onLongPress: () {
+              Navigator.of(context).pushNamed(SignInPage.id);
+            },
+            child: Container(color: Theme.of(context).primaryColor),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(

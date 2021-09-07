@@ -1,6 +1,6 @@
-import 'package:app_delivery_3/presentation/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 
+import 'package:app_delivery_3/presentation/onboarding/views/onboarding_view.dart';
 import 'package:app_delivery_3/config/size_config.dart';
 
 class OnboardingPage extends StatefulWidget {

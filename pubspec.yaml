@@ -8,9 +8,10 @@ environment:
 
 dependencies:
   bloc: ^7.1.0
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.2.0
+  flutter_bloc: ^7.2.0-dev.1
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
@@ -28,6 +29,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/retaurants/
 
   fonts:
     - family: Poppins

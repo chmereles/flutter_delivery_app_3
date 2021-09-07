@@ -2,6 +2,7 @@
     "@@locale": "es",
     "welcomeMessage": "Biendvenido a Comida a tu Puerta",
 
+    "addToCart": "Agregar al carrito",
     "signInWelcomeTo": "Bienvenido a",
     "signInMessage1": "Enter you Phone number or Email address for sign in. Enjoy your food",
     "signInUsername": "Email",

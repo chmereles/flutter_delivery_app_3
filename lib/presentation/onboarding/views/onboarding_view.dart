@@ -1,7 +1,8 @@
+import 'package:app_delivery_3/presentation/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_delivery_3/config/size_config.dart';
-import 'package:app_delivery_3/presentation/onboarding_page.dart';
+import 'package:app_delivery_3/presentation/onboarding/onboarding_page.dart';
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({Key? key, required this.data}) : super(key: key);
@@ -34,6 +35,8 @@ class OnboardingView extends StatelessWidget {
             ),
           ),
         ),
+
+        //
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
