@@ -3,6 +3,8 @@
     "welcomeMessage": "Biendvenido a Comida a tu Puerta",
 
     "addToCart": "Agregar al carrito",
+    "freeDelivery": "Gratis",
+
     "signInWelcomeTo": "Bienvenido a",
     "signInMessage1": "Enter you Phone number or Email address for sign in. Enjoy your food",
     "signInUsername": "Email",
@@ -15,6 +17,11 @@
     "signInOr": "O",
     "signIn": "Ingresar",
     "signUp": "Registrarse",
+
+    "mySaved": "My Saved",
+    "mySavedFoods": "Foods",
+    "mySavedRestaurant": "Restaurants",
+
 
     "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {

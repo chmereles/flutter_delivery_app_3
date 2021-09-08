@@ -4,6 +4,8 @@ const factor = 1.36;
 
 class AppConstants {
   static const sepLeft = 11.0 * factor;
+  static const cardElevation = 5.0;
+  static const defaultIconSize = 24.0;
 }
 
 class AppColors {

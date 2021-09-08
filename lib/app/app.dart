@@ -32,6 +32,7 @@ class App extends StatelessWidget {
     // SystemChrome.setEnabledSystemUIOverlays([]);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,

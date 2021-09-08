@@ -24,8 +24,10 @@ class MainView extends StatelessWidget {
         context.read<MainBloc>().add(SelectedTab(index));
       },
       currentIndex: index,
-      selectedItemColor: Colors.amber,
-      unselectedItemColor: Colors.red,
+      selectedItemColor: Theme.of(context).primaryColor,
+      unselectedItemColor: Theme.of(context).disabledColor,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined),

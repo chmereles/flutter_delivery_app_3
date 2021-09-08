@@ -1,10 +1,12 @@
+import 'package:app_delivery_3/presentation/widgets/free_delivery.dart';
+import 'package:app_delivery_3/presentation/widgets/types_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_delivery_3/config/size_config.dart';
 import 'package:app_delivery_3/presentation/widgets/add_cart_button.dart';
 import 'package:app_delivery_3/presentation/widgets/counter_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/icon_text_widget.dart';
-import 'package:app_delivery_3/presentation/widgets/product_list_widget.dart';
+import 'package:app_delivery_3/presentation/widgets/foods/food_list_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/rating_widget.dart';
 
 class RestaurantView extends StatelessWidget {
@@ -50,8 +52,8 @@ class RestaurantView extends StatelessWidget {
 
                 // types
                 const Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: const BuildTypesWidget(
+                  padding: EdgeInsets.only(left: 5),
+                  child: TypesWidget(
                     types: [r'$$', 'Burger', 'American Food', 'Dash Food'],
                   ),
                 ),
@@ -59,23 +61,20 @@ class RestaurantView extends StatelessWidget {
                 // rating
                 Row(
                   children: [
-                    RatingStarWidget(
+                    const RatingStarWidget(
                       size: 29,
                       rating: 4.9,
                     ),
-                    SizedBox(width: 10),
-                    Text('200+ Ratings'),
+                    const SizedBox(width: 10),
+                    const Text('200+ Ratings'),
                   ],
                 ),
 
                 // delivery
                 Row(
                   children: [
-                    const IconTextWidget(
-                      iconData: Icons.monetization_on,
-                      text: 'Free delivery',
-                      iconColor: Colors.green,
-                      iconSize: 24,
+                    const FreeDelivery(
+                      freeDelivery: false,
                     ),
                     const Spacer(),
 
@@ -96,7 +95,7 @@ class RestaurantView extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.red[50],
                         ),
-                        child: Text(
+                        child: const Text(
                           'Take away',
                           style: TextStyle(color: Colors.amber),
                         ),
@@ -110,7 +109,7 @@ class RestaurantView extends StatelessWidget {
 
           //
           Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 20),
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: Container(
               color: Colors.amber,
               height: SizeConfig.screenHeight * 0.062,
@@ -118,7 +117,7 @@ class RestaurantView extends StatelessWidget {
           ),
 
           //
-          const Expanded(child: ProductListWidget()),
+          const Expanded(child: FoodListWidget()),
         ],
       ),
     );
@@ -185,39 +184,9 @@ class RestaurantView extends StatelessWidget {
               topRight: Radius.circular(25),
             ),
           ),
-          child: RestaurantProductWidget(),
+          child: const RestaurantProductWidget(),
         ),
       );
-}
-
-class BuildTypesWidget extends StatelessWidget {
-  const BuildTypesWidget({
-    Key? key,
-    required this.types,
-  }) : super(key: key);
-
-  final List<String> types;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      // children: [for (var type in types) Text('$type - ')],
-      children: [
-        for (var i = 0; i < types.length; i++)
-          if (i != types.length - 1)
-            Row(
-              children: [
-                i == 0 ? Text('${types[i]} ') : Text(' ${types[i]} '),
-                Icon(
-                  Icons.fiber_manual_record,
-                  size: 8,
-                ),
-              ],
-            )
-          else
-            Text('${types[i]}')
-      ],
-    );
-  }
 }
 
 class RestaurantProductWidget extends StatefulWidget {

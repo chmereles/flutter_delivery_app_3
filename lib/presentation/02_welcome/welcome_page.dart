@@ -1,7 +1,6 @@
-import 'package:app_delivery_3/presentation/00_main/main_page.dart';
-import 'package:app_delivery_3/presentation/10_restaurant/restaurant_page.dart';
 import 'package:flutter/material.dart';
 
+import 'package:app_delivery_3/presentation/00_main/main_page.dart';
 import 'package:app_delivery_3/presentation/03_sign_in/sign_in_page.dart';
 import 'package:app_delivery_3/config/size_config.dart';
 import 'package:app_delivery_3/l10n/l10n.dart';

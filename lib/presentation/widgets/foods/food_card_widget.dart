@@ -1,13 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'package:app_delivery_3/config/size_config.dart';
 import 'package:app_delivery_3/presentation/widgets/counter_widget.dart';
-import 'package:app_delivery_3/presentation/widgets/icon_text_widget.dart';
-import 'package:app_delivery_3/presentation/widgets/rating_widget.dart';
-import 'package:flutter/material.dart';
 
 final cardHeight = SizeConfig.screenHeight * 0.155;
 
-class ProductItemWidget extends StatelessWidget {
-  const ProductItemWidget({Key? key}) : super(key: key);
+class FoodCardWidget extends StatelessWidget {
+  const FoodCardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +15,8 @@ class ProductItemWidget extends StatelessWidget {
     const description =
         'Sandwich features two savory flame-grilled beef patties';
     const typeColor = Colors.grey;
-    // final cardWidth = SizeConfig.screenWidth * 0.8;
-    final imageHeight = cardHeight * 0.9;
 
+    final imageHeight = cardHeight * 0.9;
     const restaurantStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 14,
@@ -86,7 +84,7 @@ class ProductItemWidget extends StatelessWidget {
                             style: priceStyle,
                           ),
                           const Spacer(),
-                          CounterWidget()
+                          const CounterWidget()
                         ],
                       ),
                     ],

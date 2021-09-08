@@ -1,16 +1,18 @@
+import 'package:app_delivery_3/config/app_constants.dart';
 import 'package:flutter/material.dart';
 
-typedef void RatingChangeCallback(double rating);
+typedef RatingChangeCallback = void Function(double rating);
 
 class RatingStarWidget extends StatelessWidget {
   const RatingStarWidget({
+    Key? key,
     // this.starCount = 5,
     this.rating = .0,
-    this.size = 20,
+    this.size = AppConstants.defaultIconSize,
     // this.onRatingChanged,
     this.color,
     this.cant,
-  });
+  }) : super(key: key);
 
   // final int starCount;
   final double rating;
