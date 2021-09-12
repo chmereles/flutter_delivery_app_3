@@ -51,12 +51,12 @@ class SignInview extends StatelessWidget {
             // bloque 2
             BuildTextField(
               hintText: l10n.signInUsername,
-              iconData: Icons.person_outline,
+              prefixIconData: Icons.person_outline,
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             BuildTextField(
               hintText: l10n.signInPassword,
-              iconData: Icons.lock_outline,
+              prefixIconData: Icons.lock_outline,
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.01),
             Row(
@@ -144,14 +144,16 @@ class SignInview extends StatelessWidget {
 class BuildTextField extends StatelessWidget {
   const BuildTextField({
     Key? key,
-    this.textFieldColor,
-    required this.iconData,
     required this.hintText,
+    required this.prefixIconData,
+    this.sufixIcon,
+    this.textFieldColor,
   }) : super(key: key);
 
-  final Color? textFieldColor;
-  final IconData iconData;
   final String hintText;
+  final IconData prefixIconData;
+  final Icon? sufixIcon;
+  final Color? textFieldColor;
 
   @override
   Widget build(BuildContext context) {
@@ -163,11 +165,10 @@ class BuildTextField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           prefixIcon: Icon(
-            iconData,
+            prefixIconData,
             size: 30,
           ),
-          // contentPadding: EdgeInsets.only(
-          //     left: 15, top: editHeight / 2, right: buttonWidth + 10),
+          suffixIcon: sufixIcon,
           isDense: true,
           hintText: hintText,
           border: const OutlineInputBorder(

@@ -14,7 +14,7 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'Poppins',
   primaryColor: lightPrimaryColor,
-  accentColor: lightAccentColor,
+  // colorScheme: ColorScheme.fromSwatch().copyWith(secondary: lightAccentColor),
   //
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
@@ -60,7 +60,7 @@ ThemeData darkTheme = ThemeData(
   // fontFamily: 'Poppins',
 
   primaryColor: darkPrimaryColor,
-  accentColor: darkAccentColor,
+  // colorScheme: ColorScheme.fromSwatch().copyWith(secondary: darkAccentColor),
 
   //
   outlinedButtonTheme: OutlinedButtonThemeData(

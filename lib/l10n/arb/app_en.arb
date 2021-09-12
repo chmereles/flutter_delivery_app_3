@@ -5,6 +5,10 @@
     "addToCart": "Add To Cart",
     "freeDelivery": "Free",
     
+    "nearMeSearch": "Search food and restaurants",
+    "nearMeBy": "Near by restaurants",
+    "nearMeItemsResults": "Restaurants found near you",
+
     "signInWelcomeTo": "Welcome to",
     "signInMessage1": "Enter you Phone number or Email address for sign in. Enjoy your food",
     "signInUsername": "Username",

@@ -52,7 +52,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       padding: const EdgeInsets.only(left: 5),
       child: Container(
         decoration: BoxDecoration(
-          color: active ? Theme.of(context).accentColor : Colors.grey,
+          color: active ? Theme.of(context).colorScheme.secondary : Colors.grey,
           borderRadius: BorderRadius.circular(15),
         ),
         height: 8,
@@ -84,7 +84,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: ElevatedButton(
                 onPressed: _skip,
                 style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).accentColor),
+                    primary: Theme.of(context).colorScheme.secondary),
                 child: const Text('Get Started'),
               ),
             ),

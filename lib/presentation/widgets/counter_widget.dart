@@ -38,7 +38,7 @@ class _CounterWidgetState extends State<CounterWidget> {
         ChangeCantButton(
           iconData: Icons.add_circle,
           onPressed: () => _updateCant(1),
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ],
     );

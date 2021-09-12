@@ -24,7 +24,7 @@ class FoodCardWidget extends StatelessWidget {
     final priceStyle = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 14,
-      color: Theme.of(context).accentColor,
+      color: Theme.of(context).colorScheme.secondary,
     );
     const typesStyle = TextStyle(
       fontSize: 12,

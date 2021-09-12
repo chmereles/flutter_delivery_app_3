@@ -1,57 +1,60 @@
-import 'package:flutter/material.dart';
+import 'package:app_delivery_3/config/size_config.dart';
+import 'package:app_delivery_3/domain/entities/restaurant.dart';
+import 'package:app_delivery_3/presentation/widgets/free_delivery.dart';
 import 'package:app_delivery_3/presentation/widgets/icon_text_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/image_border_radius.dart';
 import 'package:app_delivery_3/presentation/widgets/rating_widget.dart';
-import 'package:app_delivery_3/config/size_config.dart';
-import 'package:app_delivery_3/domain/entities/food_saved.dart';
+import 'package:app_delivery_3/presentation/widgets/types_widget.dart';
+import 'package:flutter/material.dart';
 
 final _cardHeight = SizeConfig.screenHeight * 0.13;
 
-class FoodSavedList extends StatelessWidget {
-  const FoodSavedList({
+class RestaurantNearList extends StatelessWidget {
+  const RestaurantNearList({
     Key? key,
-    required this.foodList,
+    required this.restaurantList,
   }) : super(key: key);
 
-  final List<FoodSaved> foodList;
+  final List<Restaurant> restaurantList;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: foodList.length,
+      itemCount: restaurantList.length,
       itemBuilder: (context, index) {
-        return _FoodWidget(foodSaved: foodList[index]);
+        return _RestaurnatWidget(restaurantSaved: restaurantList[index]);
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
 }
 
-class _FoodWidget extends StatelessWidget {
-  const _FoodWidget({
+class _RestaurnatWidget extends StatelessWidget {
+  const _RestaurnatWidget({
     Key? key,
-    required this.foodSaved,
+    required this.restaurantSaved,
   }) : super(key: key);
 
-  final FoodSaved foodSaved;
+  final Restaurant restaurantSaved;
   @override
   Widget build(BuildContext context) {
-    final foodName = foodSaved.food.name;
-    final foodImage = foodSaved.food.image;
-    final foodPrice = foodSaved.food.price;
-    final foodRating = foodSaved.food.rating;
-    final restaurant = foodSaved.restaurant;
-    final time = foodSaved.time;
+    final restaurantName = restaurantSaved.name;
+    final restaurantImage = restaurantSaved.image;
+    final freeDelivery = restaurantSaved.freeDelivery;
+    final retaurantRating = restaurantSaved.rating;
+    final foodList = restaurantSaved.foodList;
+
+    final time = restaurantSaved.time;
     final imageHeight = _cardHeight * 0.9;
 
-    const foodNameStyle = TextStyle(
+    const restaurantNameStyle = TextStyle(
       fontWeight: FontWeight.bold,
     );
-    const restaurantStyle = TextStyle(
-      fontSize: 12,
-    );
-    final priceStyle = TextStyle(
-      color: Theme.of(context).colorScheme.secondary,
-    );
+    // const typesStyle = TextStyle(
+    //   fontSize: 12,
+    // );
+    // final priceStyle = TextStyle(
+    //   color: Theme.of(context).accentColor,
+    // );
 
     //
     return SizedBox(
@@ -61,7 +64,7 @@ class _FoodWidget extends StatelessWidget {
         child: Row(
           children: [
             // image
-            ImageBorderRadius(image: foodImage, imageHeight: imageHeight),
+            ImageBorderRadius(image: restaurantImage, imageHeight: imageHeight),
             const SizedBox(width: 10),
             //
             Expanded(
@@ -69,21 +72,21 @@ class _FoodWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // food name
-                  Text(
-                    foodName,
-                    style: foodNameStyle,
-                  ),
                   // restaurant
                   Text(
-                    restaurant,
-                    style: restaurantStyle,
+                    restaurantName,
+                    style: restaurantNameStyle,
                   ),
+
+                  // types
+                  TypesWidget(
+                      types: foodList, iconData: Icons.local_dining_outlined),
+
                   // rating, time and price
                   Row(
                     children: [
                       RatingStarWidget(
-                        rating: foodRating,
+                        rating: retaurantRating,
                       ),
                       const Spacer(),
                       IconTextWidget(
@@ -91,15 +94,12 @@ class _FoodWidget extends StatelessWidget {
                         text: time,
                       ),
                       const Spacer(),
-                      Text(
-                        '\$ $foodPrice',
-                        style: priceStyle,
-                      ),
+                      FreeDelivery(freeDelivery: freeDelivery),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

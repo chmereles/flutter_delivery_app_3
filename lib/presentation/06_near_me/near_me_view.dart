@@ -1,4 +1,8 @@
 import 'package:app_delivery_3/config/size_config.dart';
+import 'package:app_delivery_3/domain/entities/restaurant_saved.dart';
+import 'package:app_delivery_3/l10n/l10n.dart';
+import 'package:app_delivery_3/presentation/03_sign_in/views/sign_in_view.dart';
+import 'package:app_delivery_3/presentation/06_near_me/widgets/restaurant_saved_list_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/build_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -32,19 +36,19 @@ class _BuildBody extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
+          const Icon(
             Icons.pin_drop_outlined,
             size: iconSize,
           ),
           SizedBox(
             width: width * 0.7,
-            child: Text(
+            child: const Text(
               address,
               style: textStyle,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          Icon(
+          const Icon(
             Icons.expand_more_outlined,
             size: iconSize,
           ),
@@ -100,12 +104,72 @@ class _BuildBody extends StatelessWidget {
     );
   }
 
+  Widget _buildSearchButton(BuildContext context) {
+    final l10n = context.l10n;
+
+    return BuildTextField(
+      hintText: l10n.nearMeSearch,
+      prefixIconData: Icons.search_outlined,
+      sufixIcon: Icon(
+        Icons.tune_outlined,
+        color: Theme.of(context).colorScheme.secondary,
+        size: 30,
+      ),
+    );
+  }
+
+  Widget _buildTextResults(BuildContext context) {
+    final l10n = context.l10n;
+    const cant = '200+';
+
+    const nearByStyle = TextStyle(fontWeight: FontWeight.bold);
+    // const cantStyle = TextStyle(fontWeight: FontWeight.bold);
+
+    return Container(
+      // color: Colors.red,
+      height: SizeConfig.screenHeight * 0.07,
+      width: SizeConfig.screenWidth,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
+            l10n.nearMeBy,
+            style: nearByStyle,
+          ),
+          Text('$cant ${l10n.nearMeItemsResults}'),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildAppBar(
         title: _buildTitle(context),
         actions: [_buildNotification(context)],
+      ),
+      body: Padding(
+        // padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.only(left: 18, right: 18, top: 16),
+        child: Container(
+          // width: SizeConfig.screenWidth,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              _buildSearchButton(context),
+              const SizedBox(height: 16),
+              _buildTextResults(context),
+              const SizedBox(height: 16),
+              Expanded(
+                child:
+                    RestaurantNearList(restaurantList: myRestaurantSavedList),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

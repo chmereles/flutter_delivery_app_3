@@ -255,9 +255,10 @@ class _RestaurantProductWidgetState extends State<RestaurantProductWidget> {
                     activeTrackColor: Colors.grey,
                     inactiveTrackColor: Colors.grey,
                     trackShape: const RectangularSliderTrackShape(),
-                    thumbColor: Theme.of(context).accentColor,
+                    thumbColor: Theme.of(context).colorScheme.secondary,
                     // overlayColor: Colors.red.withAlpha(32),
-                    overlayColor: Theme.of(context).accentColor.withAlpha(32),
+                    overlayColor:
+                        Theme.of(context).colorScheme.secondary.withAlpha(32),
                     valueIndicatorColor: Colors.black),
                 child: Slider(
                   max: _maxSliderValue,

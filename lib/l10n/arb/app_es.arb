@@ -5,6 +5,10 @@
     "addToCart": "Agregar al carrito",
     "freeDelivery": "Gratis",
 
+    "nearMeSearch": "Buscar comidas y negocios",
+    "nearMeBy": "Negocios cerca",
+    "nearMeItemsResults": "Comercios encontradnos cerca de ti",
+
     "signInWelcomeTo": "Bienvenido a",
     "signInMessage1": "Enter you Phone number or Email address for sign in. Enjoy your food",
     "signInUsername": "Email",

@@ -1,5 +1,5 @@
 import 'package:app_delivery_3/presentation/05_home/views/home_view.dart';
-import 'package:app_delivery_3/presentation/06_near_me/views/near_me_view.dart';
+import 'package:app_delivery_3/presentation/06_near_me/near_me_view.dart';
 import 'package:app_delivery_3/presentation/07_cart/views/cart_view.dart';
 import 'package:app_delivery_3/presentation/08_my_order/views/my_order.dart';
 import 'package:app_delivery_3/presentation/09_account/views/account_view.dart';
