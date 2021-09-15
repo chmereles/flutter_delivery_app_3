@@ -1,11 +1,11 @@
 import 'package:app_delivery_3/presentation/00_main/main_page.dart';
+import 'package:app_delivery_3/presentation/02_welcome/welcome_page.dart';
 import 'package:app_delivery_3/presentation/03_sign_in/sign_in_page.dart';
 import 'package:app_delivery_3/presentation/05_home/home_page.dart';
 import 'package:app_delivery_3/presentation/10_restaurant/restaurant_page.dart';
-import 'package:flutter/material.dart';
-
-import 'package:app_delivery_3/presentation/02_welcome/welcome_page.dart';
+import 'package:app_delivery_3/presentation/filter/filter_page.dart';
 import 'package:app_delivery_3/presentation/onboarding/onboarding_page.dart';
+import 'package:flutter/material.dart';
 
 final ruotes = <String, WidgetBuilder>{
   MainPage.id: (BuildContext context) => const MainPage(),
@@ -14,5 +14,6 @@ final ruotes = <String, WidgetBuilder>{
   SignInPage.id: (BuildContext context) => const SignInPage(),
   HomePage.id: (BuildContext context) => const HomePage(),
   RestaurantPage.id: (BuildContext context) => const RestaurantPage(),
+  FilterPage.id: (BuildContext context) => const FilterPage(),
   // YourOrderPage.id: (BuildContext context) => YourOrderPage(),
 };

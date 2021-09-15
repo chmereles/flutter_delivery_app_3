@@ -40,7 +40,7 @@ class _FoodWidget extends StatelessWidget {
     final foodPrice = foodSaved.food.price;
     final foodRating = foodSaved.food.rating;
     final restaurant = foodSaved.restaurant;
-    final time = foodSaved.time;
+    final time = foodSaved.deliverTime;
     final imageHeight = _cardHeight * 0.9;
 
     const foodNameStyle = TextStyle(

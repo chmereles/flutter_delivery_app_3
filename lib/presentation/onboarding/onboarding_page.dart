@@ -53,7 +53,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       child: Container(
         decoration: BoxDecoration(
           color: active ? Theme.of(context).colorScheme.secondary : Colors.grey,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
         ),
         height: 8,
         width: 15,

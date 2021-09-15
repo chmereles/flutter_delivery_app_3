@@ -3,6 +3,7 @@ import 'package:app_delivery_3/domain/entities/restaurant_saved.dart';
 import 'package:app_delivery_3/l10n/l10n.dart';
 import 'package:app_delivery_3/presentation/03_sign_in/views/sign_in_view.dart';
 import 'package:app_delivery_3/presentation/06_near_me/widgets/restaurant_saved_list_widget.dart';
+import 'package:app_delivery_3/presentation/filter/filter_page.dart';
 import 'package:app_delivery_3/presentation/widgets/build_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -18,41 +19,26 @@ class NearMeView extends StatelessWidget {
 class _BuildBody extends StatelessWidget {
   const _BuildBody({Key? key}) : super(key: key);
 
+  void _openFilterPage(BuildContext context) {
+    Navigator.of(context).pushNamed(FilterPage.id);
+  }
+
   Widget _buildTitle(BuildContext context) {
     const address = '13A Masr Street, Nuew York';
-    const iconSize = 20.0;
-    const textStyle = TextStyle(fontSize: 12);
     final height = SizeConfig.screenHeight * 0.038;
     final width = SizeConfig.screenWidth * 0.6;
 
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         color: Colors.amber,
       ),
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: height,
       width: width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Icon(
-            Icons.pin_drop_outlined,
-            size: iconSize,
-          ),
-          SizedBox(
-            width: width * 0.7,
-            child: const Text(
-              address,
-              style: textStyle,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const Icon(
-            Icons.expand_more_outlined,
-            size: iconSize,
-          ),
-        ],
+      child: AddressWidget(
+        width: width,
+        address: address,
       ),
     );
   }
@@ -110,10 +96,13 @@ class _BuildBody extends StatelessWidget {
     return BuildTextField(
       hintText: l10n.nearMeSearch,
       prefixIconData: Icons.search_outlined,
-      sufixIcon: Icon(
-        Icons.tune_outlined,
-        color: Theme.of(context).colorScheme.secondary,
-        size: 30,
+      sufixIcon: InkWell(
+        onTap: () => _openFilterPage(context),
+        child: Icon(
+          Icons.tune_outlined,
+          color: Theme.of(context).colorScheme.secondary,
+          size: 30,
+        ),
       ),
     );
   }
@@ -125,7 +114,7 @@ class _BuildBody extends StatelessWidget {
     const nearByStyle = TextStyle(fontWeight: FontWeight.bold);
     // const cantStyle = TextStyle(fontWeight: FontWeight.bold);
 
-    return Container(
+    return SizedBox(
       // color: Colors.red,
       height: SizeConfig.screenHeight * 0.07,
       width: SizeConfig.screenWidth,
@@ -152,25 +141,58 @@ class _BuildBody extends StatelessWidget {
         actions: [_buildNotification(context)],
       ),
       body: Padding(
-        // padding: const EdgeInsets.symmetric(horizontal: 18),
         padding: const EdgeInsets.only(left: 18, right: 18, top: 16),
-        child: Container(
-          // width: SizeConfig.screenWidth,
-          // color: Colors.amber,
-          child: Column(
-            children: [
-              _buildSearchButton(context),
-              const SizedBox(height: 16),
-              _buildTextResults(context),
-              const SizedBox(height: 16),
-              Expanded(
-                child:
-                    RestaurantNearList(restaurantList: myRestaurantSavedList),
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            _buildSearchButton(context),
+            const SizedBox(height: 16),
+            _buildTextResults(context),
+            const SizedBox(height: 16),
+            Expanded(
+              child: RestaurantNearList(restaurantList: myRestaurantSavedList),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+const iconSize = 20.0;
+const textStyle = TextStyle(fontSize: 12);
+
+class AddressWidget extends StatelessWidget {
+  const AddressWidget({
+    Key? key,
+    required this.width,
+    required this.address,
+  }) : super(key: key);
+
+  final double width;
+  final String address;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Icon(
+          Icons.pin_drop_outlined,
+          size: iconSize,
+        ),
+        SizedBox(
+          width: width * 0.7,
+          child: Text(
+            address,
+            style: textStyle,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        const Icon(
+          Icons.expand_more_outlined,
+          size: iconSize,
+        ),
+      ],
     );
   }
 }

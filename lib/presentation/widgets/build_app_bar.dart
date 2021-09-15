@@ -12,14 +12,15 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? Colors.black
+        : Colors.white;
     return AppBar(
-      // automaticallyImplyLeading: false,
       title: title,
       centerTitle: true,
       backgroundColor: Colors.transparent,
+      foregroundColor: color,
       elevation: 0,
-      textTheme: Theme.of(context).textTheme,
-      iconTheme: const IconThemeData(),
       actions: actions,
     );
   }

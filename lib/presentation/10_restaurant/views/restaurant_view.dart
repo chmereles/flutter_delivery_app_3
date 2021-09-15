@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:app_delivery_3/config/size_config.dart';
 import 'package:app_delivery_3/presentation/widgets/add_cart_button.dart';
-import 'package:app_delivery_3/presentation/widgets/counter_widget.dart';
+import 'package:app_delivery_3/presentation/widgets/counters/counter_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/icon_text_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/foods/food_list_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/rating_widget.dart';

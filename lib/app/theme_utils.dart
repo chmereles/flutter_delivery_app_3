@@ -11,19 +11,22 @@ const blackColor = Color(0xFF0E122B);
 
 // ThemeData lightTheme = ThemeData.light().copyWith(
 ThemeData lightTheme = ThemeData(
-  brightness: Brightness.light,
   fontFamily: 'Poppins',
-  primaryColor: lightPrimaryColor,
-  // colorScheme: ColorScheme.fromSwatch().copyWith(secondary: lightAccentColor),
+  // brightness: Brightness.light,
+  // primaryColor: lightPrimaryColor,
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    brightness: Brightness.light,
+    primary: lightPrimaryColor,
+    secondary: lightAccentColor,
+  ),
+  // colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.red),
   //
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       primary: lightPrimaryColor,
       side: const BorderSide(color: lightPrimaryColor, width: 1.5),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
     ),
   ),
@@ -31,8 +34,8 @@ ThemeData lightTheme = ThemeData(
   //
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       primary: lightPrimaryColor,
     ),
@@ -56,11 +59,13 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  // fontFamily: 'Poppins',
+  fontFamily: 'Poppins',
 
-  primaryColor: darkPrimaryColor,
-  // colorScheme: ColorScheme.fromSwatch().copyWith(secondary: darkAccentColor),
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    secondary: darkAccentColor,
+    brightness: Brightness.dark,
+    primary: darkPrimaryColor,
+  ),
 
   //
   outlinedButtonTheme: OutlinedButtonThemeData(
@@ -68,9 +73,7 @@ ThemeData darkTheme = ThemeData(
       primary: darkPrimaryColor,
       side: const BorderSide(color: darkPrimaryColor, width: 1.5),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(30),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
     ),
   ),

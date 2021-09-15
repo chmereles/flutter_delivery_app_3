@@ -152,15 +152,17 @@ class BuildTextField extends StatelessWidget {
 
   final String hintText;
   final IconData prefixIconData;
-  final Icon? sufixIcon;
+  final Widget? sufixIcon;
   final Color? textFieldColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(15),
+        ),
         color: textFieldColor ?? Colors.grey[200],
-        borderRadius: BorderRadius.circular(15),
       ),
       child: TextField(
         decoration: InputDecoration(
@@ -168,6 +170,7 @@ class BuildTextField extends StatelessWidget {
             prefixIconData,
             size: 30,
           ),
+          // suffixIcon: sufixIcon,
           suffixIcon: sufixIcon,
           isDense: true,
           hintText: hintText,

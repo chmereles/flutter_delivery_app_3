@@ -2,8 +2,28 @@
     "@@locale": "es",
     "welcomeMessage": "Biendvenido a Comida a tu Puerta",
 
+    "myCart": "Mi carrito",
+    "myCartAddPromoCode": "Agregar codigo de descuento",
+    "myCartItemTotal": "Total",
+    "myCartDiscount": "descuento",
+    "myCartDeliveryFree": "Envio gratis",
+    "myCartDeliveryTo": "Enviar a",
+    "myCartChange": "Cambiar",
+    "myCheckout": "Checkout",
+
     "addToCart": "Agregar al carrito",
     "freeDelivery": "Gratis",
+
+    "filterCategory": "Categoria",
+    "filterFoodGroups": "Grupo de comidas",
+    "filterDrinkGroups": "Grupo de bebidas",
+    "filterDessertGroups": "Grupo de postres",
+    "filterRating": "Rating",
+    "filterPriceRange": "Rango de precio",
+    "filterApplyFilters": "Aplicar filtros",
+    "filterFood": "Comida",
+    "filterDrinks": "Bebidas",
+    "filterDessert": "Postres",
 
     "nearMeSearch": "Buscar comidas y negocios",
     "nearMeBy": "Negocios cerca",

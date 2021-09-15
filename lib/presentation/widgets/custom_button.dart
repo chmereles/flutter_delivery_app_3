@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   const CustomButton({
     Key? key,
-    required this.onPressed,
     required this.child,
+    this.onPressed,
     this.bold,
     this.height,
     this.width,
@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     this.image,
   }) : super(key: key);
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
   final bool? bold;
   final double? height;
@@ -38,7 +38,7 @@ class CustomButton extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                   child: Image.asset(image!),
                 ),
               ),

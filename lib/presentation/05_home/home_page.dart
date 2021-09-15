@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:app_delivery_3/presentation/05_home/views/home_view.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,6 +7,6 @@ class HomePage extends StatelessWidget {
   static String id = 'home-page';
   @override
   Widget build(BuildContext context) {
-    return HomeView();
+    return const HomeView();
   }
 }

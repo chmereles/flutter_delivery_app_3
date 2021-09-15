@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:app_delivery_3/config/size_config.dart';
-import 'package:app_delivery_3/presentation/widgets/counter_widget.dart';
+import 'package:app_delivery_3/presentation/widgets/counters/counter_widget.dart';
 
 final cardHeight = SizeConfig.screenHeight * 0.155;
 
@@ -45,7 +45,7 @@ class FoodCardWidget extends StatelessWidget {
             children: [
               // image
               ClipRRect(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
                 child: Image.asset(
                   image,
                   fit: BoxFit.cover,

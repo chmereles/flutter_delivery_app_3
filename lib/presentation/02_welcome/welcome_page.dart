@@ -14,7 +14,7 @@ class WelcomePage extends StatelessWidget {
   void _gotoSingInPage(BuildContext context) {
     // Navigator.of(context).pushNamed(SignInPage.id);
     // Navigator.of(context).pushNamed(RestaurantPage.id);
-    Navigator.of(context).pushNamed(MainPage.id);
+    Navigator.of(context).pushReplacementNamed(MainPage.id);
   }
 
   @override
