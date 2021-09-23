@@ -1,15 +1,32 @@
 import 'package:app_delivery_3/config/size_config.dart';
-import 'package:app_delivery_3/presentation/widgets/build_app_bar.dart';
+import 'package:app_delivery_3/presentation/03_sign_in/views/sign_in_view.dart';
 import 'package:app_delivery_3/presentation/widgets/my_tabbar.dart';
+import 'package:app_delivery_3/presentation/widgets/notification/notification_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/rating_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/restaurant_item_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/restaurant_list_widget.dart';
 import 'package:flutter/material.dart';
 
 const leftPadding = 12.0;
+final _headerHeight = SizeConfig.screenHeight * 0.3;
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
+
+  Widget _buildHeader(BuildContext context) {
+    return Container(
+      height: _headerHeight,
+      color: Theme.of(context).colorScheme.primary,
+      child: Column(
+        children: [
+          BuildTextField(
+            hintText: '',
+            prefixIconData: Icons.search_outlined,
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _buildDelivered(BuildContext context) {
     const iconSize = 18.0;
@@ -41,56 +58,6 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildNotification(BuildContext context) {
-    const notificationSize = 15.0;
-    const notification = '2';
-    const textStyle = TextStyle(fontSize: 11, color: Colors.white);
-    const splashRadius = 25.0;
-    final notificationColor = Theme.of(context).colorScheme.secondary;
-
-    void _onPressed() {
-      print('button pressed');
-    }
-
-    return Container(
-      // color: Colors.red,
-      child: Stack(
-        children: [
-          IconButton(
-            splashRadius: splashRadius,
-            onPressed: _onPressed,
-            icon: Stack(
-              children: [
-                const Align(
-                  child: Icon(Icons.notifications_active_outlined),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Container(
-                      height: notificationSize,
-                      width: notificationSize,
-                      decoration: BoxDecoration(
-                        // color: Colors.black,
-                        color: notificationColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(50)),
-                      ),
-                      child: const Center(
-                        child: Text(notification, style: textStyle),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final dataTabs = [
@@ -115,20 +82,17 @@ class HomeView extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        // foregroundColor: Colors.white,
         iconTheme: IconThemeData().copyWith(color: Colors.white),
         title: _buildDelivered(context),
-        actions: [_buildNotification(context)],
+        actions: [NotificationWidget()],
         elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: SizeConfig.screenHeight * 0.3,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-
+            //
+            _buildHeader(context),
+            //
             const FavoriteWidet(),
             const SizedBox(height: 15),
 
@@ -140,13 +104,7 @@ class HomeView extends StatelessWidget {
             ),
             const SizedBox(height: 15),
 
-            // SizedBox(
-            //   // color: Colors.red,
-            //   height: cardHeight * 3,
-            //   child: const RestaurantsWidget(),
-            // ),
-
-            Container(
+            SizedBox(
               height: cardAgainHeight + 45,
               // color: Colors.amber,
               child: const OrderAgainWidget(),
@@ -160,6 +118,36 @@ class HomeView extends StatelessWidget {
 
 class FavoriteWidet extends StatelessWidget {
   const FavoriteWidet({Key? key}) : super(key: key);
+
+  Container _buildType(IconData iconData, String text) {
+    final bakcgroundColor = Colors.red[100];
+    final textColor = Colors.red[400];
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: bakcgroundColor,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
+      height: 20,
+      child: Row(
+        children: [
+          Icon(
+            iconData,
+            size: 16,
+            color: textColor,
+          ),
+          Text(
+            ' $text',
+            style: TextStyle(
+              fontSize: 10,
+              color: textColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,6 +193,37 @@ class FavoriteItemWidget extends StatelessWidget {
   const FavoriteItemWidget({Key? key, required this.size}) : super(key: key);
 
   final Size size;
+
+  Container _buildType(IconData iconData, String text) {
+    final bakcgroundColor = Colors.red[100];
+    final textColor = Colors.red[400];
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: bakcgroundColor,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
+      height: 20,
+      child: Row(
+        children: [
+          Icon(
+            iconData,
+            size: 16,
+            color: textColor,
+          ),
+          Text(
+            ' $text',
+            style: TextStyle(
+              fontSize: 10,
+              color: textColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     const image = 'assets/retaurants/burger_king.png';
@@ -311,36 +330,6 @@ class FavoriteItemWidget extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Container _buildType(IconData iconData, String text) {
-    final bakcgroundColor = Colors.red[100];
-    final textColor = Colors.red[400];
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-        color: bakcgroundColor,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-      ),
-      height: 20,
-      child: Row(
-        children: [
-          Icon(
-            iconData,
-            size: 16,
-            color: textColor,
-          ),
-          Text(
-            ' $text',
-            style: TextStyle(
-              fontSize: 10,
-              color: textColor,
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -494,36 +483,6 @@ class BuildItemWidget extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Container _buildType(IconData iconData, String text) {
-    final bakcgroundColor = Colors.red[100];
-    final textColor = Colors.red[400];
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-        color: bakcgroundColor,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-      ),
-      height: 20,
-      child: Row(
-        children: [
-          Icon(
-            iconData,
-            size: 16,
-            color: textColor,
-          ),
-          Text(
-            ' $text',
-            style: TextStyle(
-              fontSize: 10,
-              color: textColor,
-            ),
-          ),
-        ],
       ),
     );
   }

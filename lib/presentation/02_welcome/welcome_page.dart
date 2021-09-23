@@ -1,3 +1,4 @@
+import 'package:app_delivery_3/presentation/08_my_order/my_order_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_delivery_3/presentation/00_main/main_page.dart';
@@ -33,7 +34,13 @@ class WelcomePage extends StatelessWidget {
       body: Stack(
         children: [
           InkWell(
-            onTap: () => _gotoSingInPage(context),
+            onDoubleTap: () {
+              Navigator.of(context).pushNamed(MyOrderPage.id);
+            },
+            // onTap: () => _gotoSingInPage(context),
+            onTap: () {
+              Navigator.of(context).pushNamed(MyOrderPage.id);
+            },
             onLongPress: () {
               Navigator.of(context).pushNamed(SignInPage.id);
             },

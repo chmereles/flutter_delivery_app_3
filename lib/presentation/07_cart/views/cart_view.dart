@@ -8,7 +8,11 @@ import 'package:app_delivery_3/presentation/widgets/image_border_radius.dart';
 import 'package:flutter/material.dart';
 import 'package:app_delivery_3/l10n/l10n.dart';
 
-final _cardHeight = SizeConfig.screenHeight * 0.13;
+final _cardHeight = SizeConfig.screenHeight * 0.12;
+final _promoHeight = SizeConfig.screenHeight * 0.08;
+final _detailsHeight = SizeConfig.screenHeight * 0.15;
+final _totalHeight = SizeConfig.screenHeight * 0.09;
+final _delivryToHeight = SizeConfig.screenHeight * 0.12;
 
 class CartView extends StatelessWidget {
   const CartView({Key? key}) : super(key: key);
@@ -25,41 +29,53 @@ class _BuildBody extends StatelessWidget {
   }) : super(key: key);
 
   Widget _buildPromoCode(BuildContext context) {
-    return Row(
-      children: [
-        Icon(Icons.bookmark),
-        Text('Add promo code'),
-        Spacer(),
-        Icon(Icons.navigate_next),
-      ],
+    return SizedBox(
+      height: _promoHeight,
+      child: Row(
+        children: [
+          Icon(
+            Icons.local_activity,
+            color: Theme.of(context).colorScheme.secondary,
+            size: 35,
+          ),
+          const SizedBox(width: 5),
+          const Text('Add promo code'),
+          const Spacer(),
+          const Icon(Icons.navigate_next),
+        ],
+      ),
     );
   }
 
   Widget _buildTotalDetails(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text('Item total'),
-            Spacer(),
-            Text('\$50'),
-          ],
-        ),
-        Row(
-          children: [
-            Text('Discount'),
-            Spacer(),
-            Text('\$10'),
-          ],
-        ),
-        Row(
-          children: [
-            Text('Delivery'),
-            Spacer(),
-            Text('Free'),
-          ],
-        ),
-      ],
+    return SizedBox(
+      height: _detailsHeight,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+            children: [
+              Text('Item total'),
+              Spacer(),
+              Text('\$50'),
+            ],
+          ),
+          Row(
+            children: [
+              Text('Discount'),
+              Spacer(),
+              Text('\$10'),
+            ],
+          ),
+          Row(
+            children: [
+              Text('Delivery'),
+              Spacer(),
+              Text('Free'),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -68,12 +84,15 @@ class _BuildBody extends StatelessWidget {
       fontWeight: FontWeight.bold,
       fontSize: 30,
     );
-    return Row(
-      children: [
-        Text('Total', style: textStyle),
-        Spacer(),
-        Text('\$70', style: textStyle),
-      ],
+    return SizedBox(
+      height: _totalHeight,
+      child: Row(
+        children: [
+          Text('Total', style: textStyle),
+          Spacer(),
+          Text('\$70', style: textStyle),
+        ],
+      ),
     );
   }
 
@@ -89,7 +108,7 @@ class _BuildBody extends StatelessWidget {
     );
 
     return SizedBox(
-      height: _cardHeight,
+      height: _delivryToHeight,
       child: Row(
         children: [
           // image
@@ -149,29 +168,31 @@ class _BuildBody extends StatelessWidget {
       appBar: BuildAppBar(title: Text(l10n.myCart)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            SizedBox(
-              height: _cardHeight * 2,
-              child: ItemCartListView(
-                foodList: foodList,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: _cardHeight * 2,
+                child: ItemCartListView(
+                  foodList: foodList,
+                ),
               ),
-            ),
-            const Divider(),
-            //
-            _buildPromoCode(context),
-            const Divider(),
-            //
-            _buildTotalDetails(context),
-            const Divider(),
-            //
-            _buildTotal(context),
-            const Divider(),
-            //
-            _buildDeliveryTo(context),
-            //
-            _buildCheckuotButton(context),
-          ],
+              const Divider(),
+              //
+              _buildPromoCode(context),
+              const Divider(),
+              //
+              _buildTotalDetails(context),
+              const Divider(),
+              //
+              _buildTotal(context),
+              const Divider(),
+              //
+              _buildDeliveryTo(context),
+              //
+              _buildCheckuotButton(context),
+            ],
+          ),
         ),
       ),
     );
