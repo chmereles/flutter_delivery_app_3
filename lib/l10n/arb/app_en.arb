@@ -2,6 +2,15 @@
     "@@locale": "en",
     "welcomeMessage": "Welcome to Food Door",
     
+    "saveAddressSelectLocation": "Select Location",
+    "saveAddressYourLocation": "Your Location",
+    "saveAddressChange": "Change",
+    "saveAddressTag": "Tag this location for later",
+    "saveAddressHome": "Home",
+    "saveAddressWork": "Work",
+    "saveAddressOther": "Other",
+    "saveAddressSave": "Save",
+
     "myCart": "My Cart",
     "myCartAddPromoCode": "Add promo code",
     "myCartItemTotal": "Item Total",
@@ -13,6 +22,10 @@
 
     "addToCart": "Add To Cart",
     "freeDelivery": "Free",
+    
+    "myAdress": "My Address",
+    "myAdressSearch": "Search address",
+    "myAdressSave": "Save",
     
     "filterCategory": "Category",
     "filterFoodGroups": "Food groups",

@@ -125,6 +125,18 @@ class LineString {
   List<dynamic> lineString;
 }
 
+// const myDirectionResponse = '''
+// {"type":"FeatureCollection","features":[{
+//   "bbox":[-65.700948,-28.389268,-65.696888,-28.387751],"type":"Feature","properties":{
+//     "segments":[{"distance":547.9,"duration":131.5,"steps":[
+//       {"distance":78,"duration":18.7,"type":1,"instruction":"Turn right","name":"-","way_points":[2,3]},
+//       {"distance":290.8,"duration":69.8,"type":0,"instruction":"Turn left","name":"-","way_points":[3,9]},
+//       {"distance":0,"duration":0,"type":10,"instruction":"Arrive at your destination, on the right","name":"-","way_points":[11,11]}]}],"summary":{"distance":547.9,"duration":131.5},"way_points":[0,11]},
+//       "geometry":{"coordinates":
+//       [
+//         [-65.700948,-28.387751]
+//       ],"type":"LineString"}}],"bbox":[-65.700948,-28.389268,-65.696888,-28.387751],"metadata":{"attribution":"openrouteservice.org | OpenStreetMap contributors","service":"routing","timestamp":1632349456056,"query":{"coordinates":[[-65.6969,-28.3893],[-65.7009,-28.3877]],"profile":"driving-car","format":"json"},"engine":{"version":"6.6.1","build_date":"2021-07-05T10:57:48Z","graph_date":"2021-09-12T10:05:32Z"}}}
+// ''';
 const myDirectionResponse = '''
 {"type":"FeatureCollection","features":[{"bbox":[-65.700948,-28.389268,-65.696888,-28.387751],"type":"Feature","properties":{"segments":[{"distance":547.9,"duration":131.5,"steps":[{"distance":88.1,"duration":21.1,"type":11,"instruction":"Head west","name":"-","way_points":[0,2]},{"distance":78,"duration":18.7,"type":1,"instruction":"Turn right","name":"-","way_points":[2,3]},{"distance":290.8,"duration":69.8,"type":0,"instruction":"Turn left","name":"-","way_points":[3,9]},{"distance":75,"duration":18,"type":1,"instruction":"Turn right","name":"-","way_points":[9,10]},{"distance":16,"duration":3.8,"type":0,"instruction":"Turn left","name":"-","way_points":[10,11]},{"distance":0,"duration":0,"type":10,"instruction":"Arrive at your destination, on the right","name":"-","way_points":[11,11]}]}],"summary":{"distance":547.9,"duration":131.5},"way_points":[0,11]},"geometry":{"coordinates":[[-65.696888,-28.389254],[-65.696949,-28.389242],[-65.697786,-28.389268],[-65.697819,-28.388567],[-65.69869,-28.388579],[-65.698783,-28.388544],[-65.698875,-28.388513],[-65.699192,-28.388495],[-65.699781,-28.388508],[-65.700776,-28.388517],[-65.700824,-28.387843],[-65.700948,-28.387751]],"type":"LineString"}}],"bbox":[-65.700948,-28.389268,-65.696888,-28.387751],"metadata":{"attribution":"openrouteservice.org | OpenStreetMap contributors","service":"routing","timestamp":1632349456056,"query":{"coordinates":[[-65.6969,-28.3893],[-65.7009,-28.3877]],"profile":"driving-car","format":"json"},"engine":{"version":"6.6.1","build_date":"2021-07-05T10:57:48Z","graph_date":"2021-09-12T10:05:32Z"}}}
 ''';

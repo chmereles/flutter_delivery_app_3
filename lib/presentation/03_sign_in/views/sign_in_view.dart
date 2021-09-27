@@ -160,7 +160,7 @@ class BuildTextField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
-          Radius.circular(15),
+          Radius.circular(30),
         ),
         color: textFieldColor ?? Colors.grey[200],
       ),

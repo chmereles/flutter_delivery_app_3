@@ -5,6 +5,8 @@ import 'package:app_delivery_3/presentation/05_home/home_page.dart';
 import 'package:app_delivery_3/presentation/08_my_order/my_order_page.dart';
 import 'package:app_delivery_3/presentation/10_restaurant/restaurant_page.dart';
 import 'package:app_delivery_3/presentation/filter/filter_page.dart';
+import 'package:app_delivery_3/presentation/my_address/my_address_page.dart';
+import 'package:app_delivery_3/presentation/my_address/save_address_page.dart';
 import 'package:app_delivery_3/presentation/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,5 +19,6 @@ final ruotes = <String, WidgetBuilder>{
   RestaurantPage.id: (BuildContext context) => const RestaurantPage(),
   FilterPage.id: (BuildContext context) => const FilterPage(),
   MyOrderPage.id: (BuildContext context) => const MyOrderPage(),
-  // YourOrderPage.id: (BuildContext context) => YourOrderPage(),
+  MyAddressPage.id: (BuildContext context) => const MyAddressPage(),
+  SaveAddressPage.id: (BuildContext context) => const SaveAddressPage(),
 };

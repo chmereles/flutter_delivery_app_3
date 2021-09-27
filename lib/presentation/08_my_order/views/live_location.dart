@@ -30,6 +30,16 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
   void initState() {
     super.initState();
     _mapController = MapController();
+
+    _mapController.mapEventStream.listen((event) {
+      if (event is MapEventMoveEnd ||
+          event is MapEventFlingAnimationEnd ||
+          event is MapEventDoubleTapZoomEnd ||
+          event is MapEventRotateEnd) {
+        _centerMarker();
+        print(event);
+      }
+    });
     initLocationService();
   }
 
@@ -53,10 +63,10 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
         return;
       }
     }
-    await _locationService.changeSettings(
-      // accuracy: LocationAccuracy.high,
-      interval: 2000,
-    );
+    // await _locationService.changeSettings(
+    //   // accuracy: LocationAccuracy.high,
+    //   interval: 2000,
+    // );
 
     LocationData? location;
     bool serviceEnabled;
@@ -70,26 +80,27 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
         _permission = permission == PermissionStatus.granted;
 
         if (_permission) {
-          location = await _locationService.getLocation();
-          _currentLocation = location;
-          _locationService.onLocationChanged
-              .listen((LocationData result) async {
-            if (mounted) {
-              setState(() {
-                _currentLocation = result;
+          // location = await _locationService.getLocation();
+          // _currentLocation = location;
+          // _locationService.onLocationChanged
+          //     .listen((LocationData result) async {
+          //   if (mounted) {
+          //     setState(() {
+          //       _currentLocation = result;
 
-                // If Live Update is enabled, move map center
-                if (_liveUpdate) {
-                  _mapController.move(
-                      LatLng(
-                        _currentLocation!.latitude!,
-                        _currentLocation!.longitude!,
-                      ),
-                      _mapController.zoom);
-                }
-              });
-            }
-          });
+          //       // If Live Update is enabled, move map center
+          //       if (_liveUpdate) {
+          //         _mapController.move(
+          //             LatLng(
+          //               _currentLocation!.latitude!,
+          //               _currentLocation!.longitude!,
+          //             ),
+          //             _mapController.zoom);
+          //       }
+          //     });
+          //   }
+          // });
+          _centerMap();
         }
       } else {
         serviceRequestResult = await _locationService.requestService();
@@ -107,6 +118,28 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
       }
       location = null;
     }
+  }
+
+  void _centerMap() async {
+    final location = await _locationService.getLocation();
+    _currentLocation = location;
+    _mapController.move(
+        LatLng(
+          _currentLocation!.latitude!,
+          _currentLocation!.longitude!,
+        ),
+        _mapController.zoom);
+
+    setState(() {});
+  }
+
+  void _centerMarker() async {
+    final data = {
+      'latitude': _mapController.center.latitude,
+      'longitude': _mapController.center.longitude
+    };
+    _currentLocation = LocationData.fromMap(data);
+    setState(() {});
   }
 
   @override
@@ -139,7 +172,7 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      // appBar: AppBar(title: const Text('Home')),
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
@@ -172,6 +205,7 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
                 Text(
                   '(${currentLatLng.latitude}, ${currentLatLng.longitude},).',
                 ),
+                // Text(_mapController.center.toString()),
               ],
             )
           : Text('Error occured while acquiring location. Error Message : '
@@ -183,22 +217,26 @@ class _LiveLocationPageState extends State<LiveLocationPage> {
     return Builder(builder: (BuildContext context) {
       return FloatingActionButton(
         onPressed: () {
-          setState(() {
-            _liveUpdate = !_liveUpdate;
+          _centerMap();
+          // _centerMarker();
 
-            if (_liveUpdate) {
-              interActiveFlags = InteractiveFlag.rotate |
-                  InteractiveFlag.pinchZoom |
-                  InteractiveFlag.doubleTapZoom;
+          // print(_mapController.center.toString());
+          // setState(() {
+          //   _liveUpdate = !_liveUpdate;
 
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                    'In live update mode only zoom and rotation are enable'),
-              ));
-            } else {
-              interActiveFlags = InteractiveFlag.all;
-            }
-          });
+          //   if (_liveUpdate) {
+          //     interActiveFlags = InteractiveFlag.rotate |
+          //         InteractiveFlag.pinchZoom |
+          //         InteractiveFlag.doubleTapZoom;
+
+          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //       content: Text(
+          //           'In live update mode only zoom and rotation are enable'),
+          //     ));
+          //   } else {
+          //     interActiveFlags = InteractiveFlag.all;
+          //   }
+          // });
         },
         child: _liveUpdate ? Icon(Icons.location_on) : Icon(Icons.location_off),
       );

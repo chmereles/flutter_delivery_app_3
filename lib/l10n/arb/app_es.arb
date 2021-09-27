@@ -2,6 +2,15 @@
     "@@locale": "es",
     "welcomeMessage": "Biendvenido a Comida a tu Puerta",
 
+    "saveAddressSelectLocation": "Seleccion de ubicación",
+    "saveAddressYourLocation": "Tu ubicación",
+    "saveAddressChange": "Cambiar",
+    "saveAddressTag": "Etiquetar esta ubicación para más tarde",
+    "saveAddressHome": "Hogar",
+    "saveAddressWork": "Trabajo",
+    "saveAddressOther": "Otra",
+    "saveAddressSave": "Guardar",
+
     "myCart": "Mi carrito",
     "myCartAddPromoCode": "Agregar codigo de descuento",
     "myCartItemTotal": "Total",
@@ -13,6 +22,10 @@
 
     "addToCart": "Agregar al carrito",
     "freeDelivery": "Gratis",
+
+    "myAdress": "Mi dirección",
+    "myAdressSearch": "Buscar ubicaciones",
+    "myAdressSave": "Guardar",
 
     "filterCategory": "Categoria",
     "filterFoodGroups": "Grupo de comidas",

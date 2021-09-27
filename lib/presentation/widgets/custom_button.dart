@@ -21,9 +21,8 @@ class CustomButton extends StatelessWidget {
   final String? image;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      width: width,
+    return ConstrainedBox(
+      constraints: BoxConstraints.tightFor(width: 300, height: height),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -31,6 +30,7 @@ class CustomButton extends StatelessWidget {
           textStyle: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
+          // maximumSize: Size(width ?? double.infinity, height ?? 50),
         ),
         child: Stack(
           children: [

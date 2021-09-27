@@ -2,6 +2,7 @@ import 'package:app_delivery_3/config/size_config.dart';
 import 'package:app_delivery_3/domain/entities/food.dart';
 import 'package:app_delivery_3/presentation/06_near_me/near_me_view.dart';
 import 'package:app_delivery_3/presentation/07_cart/views/item_cart_list_view.dart';
+import 'package:app_delivery_3/presentation/widgets/address/address_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/build_app_bar.dart';
 import 'package:app_delivery_3/presentation/widgets/custom_button.dart';
 import 'package:app_delivery_3/presentation/widgets/image_border_radius.dart';
@@ -135,7 +136,7 @@ class _BuildBody extends StatelessWidget {
                   ],
                 ),
 
-                AddressWidget(width: 200, address: 'address'),
+                const AddressWidget(width: 200, address: 'address'),
               ],
             ),
           ),

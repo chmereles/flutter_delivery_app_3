@@ -4,6 +4,7 @@ import 'package:app_delivery_3/l10n/l10n.dart';
 import 'package:app_delivery_3/presentation/03_sign_in/views/sign_in_view.dart';
 import 'package:app_delivery_3/presentation/06_near_me/widgets/restaurant_saved_list_widget.dart';
 import 'package:app_delivery_3/presentation/filter/filter_page.dart';
+import 'package:app_delivery_3/presentation/widgets/address/address_widget.dart';
 import 'package:app_delivery_3/presentation/widgets/build_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -154,45 +155,6 @@ class _BuildBody extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-const iconSize = 20.0;
-const textStyle = TextStyle(fontSize: 12);
-
-class AddressWidget extends StatelessWidget {
-  const AddressWidget({
-    Key? key,
-    required this.width,
-    required this.address,
-  }) : super(key: key);
-
-  final double width;
-  final String address;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Icon(
-          Icons.pin_drop_outlined,
-          size: iconSize,
-        ),
-        SizedBox(
-          width: width * 0.7,
-          child: Text(
-            address,
-            style: textStyle,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        const Icon(
-          Icons.expand_more_outlined,
-          size: iconSize,
-        ),
-      ],
     );
   }
 }

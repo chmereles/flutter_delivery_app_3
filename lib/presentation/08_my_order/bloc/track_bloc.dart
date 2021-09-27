@@ -45,8 +45,6 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
   }
 
   void _onTicked(TimerTicked event, Emitter<TrackState> emit) {
-    TrackBloc._count = TrackBloc._count + 1;
-
     if (!_isFinished()) {
       final track = state.track.copyWith(
         currentPoint: state.track.polyPoints[TrackBloc._count],
@@ -67,7 +65,8 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
     // final distanceMetros = distance(puntoUno, puntoDos);
     // print(distanceMetros);
 
-    return TrackBloc._count > state.track.polyPoints.length;
+    TrackBloc._count = TrackBloc._count + 1;
+    return TrackBloc._count >= state.track.polyPoints.length;
   }
 
   /*

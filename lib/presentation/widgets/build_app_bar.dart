@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
   const BuildAppBar({
     Key? key,
-    required this.title,
+    this.title,
     this.actions,
   }) : super(key: key);
 
-  final Widget title;
+  final Widget? title;
   final List<Widget>? actions;
 
   @override

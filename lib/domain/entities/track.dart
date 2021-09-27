@@ -1,3 +1,4 @@
+import 'package:app_delivery_3/config/app_constants.dart';
 import 'package:latlong2/latlong.dart';
 
 class Track {
@@ -40,5 +41,25 @@ class Track {
   String toString() {
     // ignore: lines_longer_than_80_chars
     return 'complete: $isComplete start: $startPoint - end: $endPoint - curr: $currentPoint - points: $polyPoints';
+  }
+
+  String get formatedTime {
+    // incrementar el tiempo informado, para equiparar con el tiempo
+    // que informa google maps
+    final ajustedTime = time * AppConstants.googleMapCorrectionFactor;
+
+    if (ajustedTime < 3600) {
+      final min = ajustedTime / 60;
+      return '${min.truncate()} min';
+    } else {
+      final hour = ajustedTime / 3600;
+      final min = ajustedTime / 3600;
+      return '$hour:$min';
+    }
+  }
+
+  String get formatedDistance {
+    final dis = distance / 1000;
+    return '${dis.toStringAsFixed(1)} km';
   }
 }

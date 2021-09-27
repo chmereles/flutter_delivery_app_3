@@ -18,8 +18,8 @@ class TrackOrderView extends StatelessWidget {
       create: (context) => TrackBloc(
           ticker: const Ticker(),
           repository: TrackRepositoryImpl(TrackDataSourceImpl()))
-      // ..add(TrackStarted())
-      ,
+        ..add(TrackStarted()),
+      // ,
       child: const _BuildBody(),
     );
   }
@@ -49,186 +49,32 @@ class _BuildBody extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            Flexible(
-              child: BlocBuilder<TrackBloc, TrackState>(
-                buildWhen: (prev, state) =>
-                    prev.track.currentPoint != state.track.currentPoint,
-                builder: (context, state) {
-                  print('::currentPoint::');
-
-                  // if (state is TrackInitial) {
-                  //   return const CircularProgressIndicator();
-                  // }
-
-                  return Stack(
-                    children: [
-                      MapView(track: state.track),
-                      // Align(
-                      //   alignment: Alignment.bottomCenter,
-                      //   child: TripRouteView(),
-                      // ),
-                      // TripRouteView(),
-
-                      ContainerExpanded(
-                        buttonChild: Container(
-                          child: Text('Orders details'),
-                        ),
-                      ),
-
-                      // Dragable(
-                      //     child: Container(
-                      //   child: Text('data'),
-                      // )),
-                    ],
-                  );
-                },
+      body: Stack(
+        children: [
+          const MapView(),
+          //
+          Positioned(
+            left: 10,
+            right: 10,
+            bottom: 10,
+            child: ContainerExpanded(
+              buttonChild: Container(
+                color: Colors.amber,
+                height: SizeConfig.screenHeight * 0.08,
+                child: const Center(
+                  child: Text(
+                    'Orders details',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class TripRouteView extends StatelessWidget {
-  const TripRouteView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // final bottom = SizeConfig.screenWidth * 0.05;
-    final side = SizeConfig.screenWidth * 0.06;
-    final heightShrink = SizeConfig.screenHeight * 0.075;
-    final heightExpanded = SizeConfig.screenHeight * 0.396;
-
-    return Positioned(
-      bottom: side,
-      left: side,
-      right: side,
-      height: heightExpanded,
-      child: Container(
-        color: Colors.amber,
-        child: Column(
-          children: [
-            //
-            _buildShrinkButton(),
-
-            //
-            _buildTripRow(),
-
-            //
-            buildTripIcons(),
-
-            //
-            _buildDriverDetails(),
-            //
-            _buildDetailsButton(heightShrink),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDriverDetails() {
-    final radius = SizeConfig.screenWidth * 0.08;
-
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: radius,
-          backgroundColor: Colors.blue,
-          child: CircleAvatar(
-            radius: radius * 0.92,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(
-              radius: radius * 0.88,
-              backgroundImage: NetworkImage(
-                  'https://cdn.pixabay.com/photo/2018/01/15/07/52/woman-3083390_1280.jpg'),
+              contentChild: const TripRouteView(),
             ),
           ),
-        ),
-        Column(
-          children: [
-            Text('Driver 1'),
-            Text('Driver 1'),
-          ],
-        ),
-        Spacer(),
-        ElevatedButton(onPressed: () {}, child: Text('adfadf')),
-        Spacer(),
-        ElevatedButton(onPressed: () {}, child: Text('adfadf')),
-      ],
-    );
-  }
-
-  Container _buildDetailsButton(double heightShrink) {
-    return Container(
-      height: heightShrink,
-      width: SizeConfig.screenWidth,
-      color: Colors.red,
-      child: Center(child: Text('Order details')),
-    );
-  }
-
-  Row buildTripIcons() {
-    return Row(
-      children: [
-        Column(
-          children: [
-            Icon(Icons.place_outlined),
-            Text('data'),
-          ],
-        ),
-        Spacer(),
-        Column(
-          children: [
-            Icon(Icons.schedule),
-            Text('data'),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Row _buildTripRow() {
-    return Row(
-      children: [
-        Column(
-          // mainAxisSize: MainAxisSize.max,
-          children: [
-            Text('data'),
-            Text('data'),
-          ],
-        ),
-        Spacer(),
-        Expanded(
-          child: Container(
-            color: Colors.blue,
-            height: 5,
-          ),
-        ),
-        Spacer(),
-        Column(
-          children: [
-            Text('data'),
-            Text('data'),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Container _buildShrinkButton() {
-    return Container(
-      width: 100,
-      height: 10,
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        // borderRadius: Border,
+        ],
       ),
     );
   }
@@ -248,12 +94,12 @@ class ContainerExpanded extends StatefulWidget {
 }
 
 class _ContainerExpandedState extends State<ContainerExpanded> {
+  final _maxHeight = SizeConfig.screenHeight * 0.39;
   double _animatedHeight = 0;
-  final _maxHeight = 200.0;
   int _milliseconds = 0;
 
-  void changeHeight(double height) {
-    _milliseconds = 0;
+  void changeHeight(double height, [int time = 0]) {
+    _milliseconds = time;
     if (height < 0) {
       height = 0;
     }
@@ -268,74 +114,266 @@ class _ContainerExpandedState extends State<ContainerExpanded> {
   }
 
   void toggleHeight() {
-    _milliseconds = 200;
-    setState(() {
-      _animatedHeight != 0.0
-          ? _animatedHeight = 0.0
-          : _animatedHeight = _maxHeight;
-    });
+    _animatedHeight != 0.0
+        ? changeHeight(0, 200)
+        : changeHeight(_maxHeight, 200);
+  }
+
+  void panelToggle(DragUpdateDetails details) {
+    if (_animatedHeight > 0) {
+      if (details.delta.dy > 10) {
+        toggleHeight();
+      }
+    }
+  }
+
+  void panelChangeHeight(DragUpdateDetails details) {
+    if (_animatedHeight > 0) {
+      final height = _maxHeight - details.localPosition.dy;
+      changeHeight(height);
+    }
+  }
+
+  void _changeHalfHeight(DragEndDetails details) {
+    if (_animatedHeight > 0 && _animatedHeight < _maxHeight) {
+      if (_animatedHeight < _maxHeight / 2) {
+        changeHeight(0, 200);
+      } else {
+        changeHeight(_maxHeight, 200);
+      }
+    }
+  }
+
+  Container _buildShrinkButton() {
+    const colorTop = Colors.grey;
+    return Container(
+      height: 8,
+      width: 80,
+      decoration: const BoxDecoration(
+        color: colorTop,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    const colorTop = Colors.grey;
+    print('::build plegable panel::');
 
-    return Stack(
-      children: <Widget>[
-        Positioned(
-          left: 10,
-          right: 10,
-          bottom: 10,
-          child: Card(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                GestureDetector(
-                  onPanUpdate: (DragUpdateDetails details) {
-                    // print('distance: ${details.delta.distance}');
-                    // double a = 200
-
-                    if (_animatedHeight > 0) {
-                      if (details.delta.dy > 10) {
-                        toggleHeight();
-                      } else {
-                        final height = _maxHeight - details.localPosition.dy;
-                        // if (height < _animatedHeight) {
-                        changeHeight(height);
-                        // }
-                      }
-                    }
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: _milliseconds),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 8,
-                          width: 80,
-                          decoration: const BoxDecoration(
-                            color: colorTop,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                        ),
-                        if (widget.contentChild != null) widget.contentChild!
-                      ],
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          //
+          GestureDetector(
+            onPanUpdate: panelToggle,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: _milliseconds),
+              height: _animatedHeight,
+              width: 1,
+              // color: Colors.tealAccent,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 8),
+                child: Column(
+                  children: [
+                    //
+                    GestureDetector(
+                      onPanUpdate: panelChangeHeight,
+                      onPanEnd: _changeHalfHeight,
+                      child: _buildShrinkButton(),
                     ),
-                    height: _animatedHeight,
-                    color: Colors.tealAccent,
-                    width: 100,
-                  ),
+                    //
+                    if (widget.contentChild != null)
+                      if (_animatedHeight == _maxHeight)
+                        Expanded(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          child: widget.contentChild!,
+                        ))
+                  ],
                 ),
-                GestureDetector(
-                  onTap: toggleHeight,
-                  child: widget.buttonChild,
-                ),
-              ],
+              ),
             ),
           ),
-        )
+
+          //
+          GestureDetector(
+            onTap: toggleHeight,
+            child: widget.buttonChild,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TripRouteView extends StatelessWidget {
+  const TripRouteView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        const Align(
+          alignment: Alignment.topCenter,
+          child: Text(
+            'Trip Route',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        //
+        Align(
+          alignment: const Alignment(0, -0.7),
+          child: _buildTripRow(),
+        ),
+
+        //
+        Align(
+          child: buildTripIcons(),
+        ),
+
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: _buildDriverDetails(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTripRow() {
+    const style = TextStyle(
+      fontSize: 13,
+      fontWeight: FontWeight.bold,
+    );
+
+    Widget _data(String text1, String text2) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(text1, style: style),
+          Text(text2, style: style),
+        ],
+      );
+    }
+
+    Widget _line() {
+      return SizedBox(
+        width: SizeConfig.screenWidth * 0.3,
+        child: const MySeparator(
+          color: Colors.blue,
+          height: 2,
+        ),
+      );
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _data('Pizza Hut', 'Street 5'),
+        _line(),
+        _data('Nacer City', 'Street 7'),
+      ],
+    );
+  }
+
+  Widget buildTripIcons() {
+    const color = Colors.blue;
+    const stye = TextStyle();
+
+    Widget _iconText(String text, IconData iconData) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(iconData, color: color),
+          Text(text, style: stye),
+        ],
+      );
+    }
+
+    Widget _separador() {
+      return SizedBox(width: SizeConfig.screenWidth * 0.1);
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _iconText('4.5 Km', Icons.place_outlined),
+        _separador(),
+        _iconText('(15 minutes)', Icons.schedule),
+      ],
+    );
+  }
+
+  Widget _buildDriverDetails() {
+    final radius = SizeConfig.screenWidth * 0.08;
+
+    Widget _avatar() {
+      return CircleAvatar(
+        radius: radius,
+        backgroundColor: Colors.blue,
+        child: CircleAvatar(
+          radius: radius * 0.92,
+          backgroundColor: Colors.white,
+          child: CircleAvatar(
+            radius: radius * 0.88,
+            backgroundImage: NetworkImage(
+                'https://cdn.pixabay.com/photo/2018/01/15/07/52/woman-3083390_1280.jpg'),
+          ),
+        ),
+      );
+    }
+
+    Widget _text() {
+      const style1 = TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      );
+
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text('Driver 1', style: style1),
+          const Text('Driver 1'),
+        ],
+      );
+    }
+
+    Widget _button(String text, Color color) {
+      const style = TextStyle(fontSize: 12);
+      return SizedBox(
+        height: 35,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+            ),
+            primary: color,
+          ),
+          child: Text(
+            text,
+            style: style,
+          ),
+        ),
+      );
+    }
+
+    return Row(
+      children: [
+        _avatar(),
+        const SizedBox(width: 8),
+        _text(),
+        const Spacer(),
+        _button('boton 1', Colors.red),
+        const SizedBox(width: 10),
+        _button('boton 2', Colors.green),
       ],
     );
   }
@@ -375,6 +413,38 @@ class Dragable extends StatelessWidget {
               ],
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class MySeparator extends StatelessWidget {
+  final double height;
+  final Color color;
+
+  const MySeparator({this.height = 1, this.color = Colors.black});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final boxWidth = constraints.constrainWidth();
+        final dashWidth = 5.0;
+        final dashHeight = height;
+        final dashCount = (boxWidth / (2 * dashWidth)).floor();
+        return Flex(
+          children: List.generate(dashCount, (_) {
+            return SizedBox(
+              width: dashWidth,
+              height: dashHeight,
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: color),
+              ),
+            );
+          }),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          direction: Axis.horizontal,
         );
       },
     );
