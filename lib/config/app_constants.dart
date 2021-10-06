@@ -10,6 +10,12 @@ class AppConstants {
   static const openStreetMapUrlTemplate =
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   static const openStreetMapSubdomain = ['a', 'b', 'c'];
+
+  static const orsBaseUrl = 'https://api.openrouteservice.org/';
+  static const orsDirections = 'v2/directions/';
+  static const orsApiKey =
+      '5b3ce3597851110001cf62486d5cfc78392446fba599f60bfeffe0dd';
+  static const orsOffsetDirection = 0.00015;
 }
 
 class AppColors {
